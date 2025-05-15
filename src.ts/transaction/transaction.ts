@@ -6,7 +6,8 @@ import {
 } from "../crypto/index.js";
 import {
     concat, decodeRlp, encodeRlp, getBytes, getBigInt, getNumber, hexlify,
-    assert, assertArgument, isBytesLike, isHexString, toBeArray, zeroPadValue
+    assert, assertArgument, isBytesLike, isHexString, toBeArray, zeroPadValue,
+    toQuantity
 } from "../utils/index.js";
 
 import { accessListify } from "./accesslist.js";
@@ -317,8 +318,8 @@ function formatAuthorizationList(value: Array<Authorization>): Array<Array<strin
             a.address,
             formatNumber(a.nonce, "nonce"),
             formatNumber(a.signature.yParity, "yParity"),
-            a.signature.r,
-            a.signature.s
+            toQuantity(a.signature.r),
+            toQuantity(a.signature.s)
         ];
     });
 }
