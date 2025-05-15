@@ -1,7 +1,7 @@
 import { getAddress } from "../address/index.js";
 import { ZeroAddress } from "../constants/addresses.js";
 import { keccak256, sha256, Signature, SigningKey } from "../crypto/index.js";
-import { concat, decodeRlp, encodeRlp, getBytes, getBigInt, getNumber, hexlify, assert, assertArgument, isBytesLike, isHexString, toBeArray, zeroPadValue } from "../utils/index.js";
+import { concat, decodeRlp, encodeRlp, getBytes, getBigInt, getNumber, hexlify, assert, assertArgument, isBytesLike, isHexString, toBeArray, zeroPadValue, toQuantity } from "../utils/index.js";
 import { accessListify } from "./accesslist.js";
 import { authorizationify } from "./authorization.js";
 import { recoverAddress } from "./address.js";
@@ -134,8 +134,8 @@ function formatAuthorizationList(value) {
             a.address,
             formatNumber(a.nonce, "nonce"),
             formatNumber(a.signature.yParity, "yParity"),
-            a.signature.r,
-            a.signature.s
+            toQuantity(a.signature.r),
+            toQuantity(a.signature.s)
         ];
     });
 }

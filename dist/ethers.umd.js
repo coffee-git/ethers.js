@@ -8653,8 +8653,8 @@ const __$G = (typeof globalThis !== 'undefined' ? globalThis: typeof window !== 
                 a.address,
                 formatNumber(a.nonce, "nonce"),
                 formatNumber(a.signature.yParity, "yParity"),
-                a.signature.r,
-                a.signature.s
+                toQuantity(a.signature.r),
+                toQuantity(a.signature.s)
             ];
         });
     }
